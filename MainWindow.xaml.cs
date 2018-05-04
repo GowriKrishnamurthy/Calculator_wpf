@@ -22,9 +22,8 @@ namespace Calculator_wpf
     {
         bool isNewEntry = true;
         double currentValue = 0;
-        enum Operation { Add, Subtract, Multiply, Divide, Equals, Start, LastOp };
-        Operation currentOperation = Operation.Start;
-
+        enum Operation { Add, Subtract, Multiply, Divide, Equals};
+        Operation currentOperation;
         public MainWindow()
         {
             InitializeComponent();
@@ -73,16 +72,13 @@ namespace Calculator_wpf
             double newValue = Double.Parse(txtResult.Text);
             double result;
 
-            if (op != Operation.LastOp)
+            if (op != Operation.Equals)
             {
                 currentOperation = op;
             }
 
             switch (currentOperation)
             {
-                case Operation.Add:
-                    result = currentValue + newValue;
-                    break;
                 case Operation.Subtract:
                     if (currentValue == 0)
                     {
@@ -92,6 +88,9 @@ namespace Calculator_wpf
                     {
                         result = currentValue - newValue;
                     }
+                    break;
+                case Operation.Add:
+                    result = currentValue + newValue;
                     break;
                 case Operation.Multiply:
                     if (currentValue == 0)
@@ -157,7 +156,7 @@ namespace Calculator_wpf
         //Equal to button clicked. Last operation
         private void btnEqual_Click(object sender, RoutedEventArgs e)
         {
-            Calculate(Operation.LastOp);
+            Calculate(Operation.Equals);
         }
 
         //Clear the current results
