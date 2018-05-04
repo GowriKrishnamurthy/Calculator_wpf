@@ -20,9 +20,10 @@ namespace Calculator_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        enum Operation { Add, Subtract, Multiply, Divide, Equals, Start };
-        Operation currentOperation = Operation.Start;
+        bool isNewEntry = true;
         double currentValue = 0;
+        enum Operation { Add, Subtract, Multiply, Divide, Equals, Start, LastOp };
+        Operation currentOperation = Operation.Start;
 
         public MainWindow()
         {
@@ -30,44 +31,141 @@ namespace Calculator_wpf
             txtResult.Text = currentValue.ToString();
         }
 
-        //Number button clicked
         private void btnNumber_Click(object sender, RoutedEventArgs e)
         {
+            //dummy result value for trying to parse the entry string
+            int result;
 
+            //Get the value from the button label
+            Button btn = (Button)sender;
+            string value = btn.Content.ToString();
+
+            //special handling for decimal point
+            if (value.Equals("."))
+            {
+                if (isNewEntry)
+                {
+                    return;
+                }
+                if (!txtResult.Text.Contains("."))
+                {
+                    txtResult.Text += value;
+                    isNewEntry = false;
+                }
+                return;
+            }
+
+            //try to parse entry as int; 
+            //if successful, append to current entry
+            if (Int32.TryParse(value, out result))
+            {
+                if (isNewEntry || txtResult.Text.Equals("0"))
+                {
+                    txtResult.Text = "";
+                }
+                txtResult.Text += value;
+                isNewEntry = false;
+            }
         }
 
+        private void Calculate(Operation op)
+        {
+            double newValue = Double.Parse(txtResult.Text);
+            double result;
+
+            if (op != Operation.LastOp)
+            {
+                currentOperation = op;
+            }
+
+            switch (currentOperation)
+            {
+                case Operation.Add:
+                    result = currentValue + newValue;
+                    break;
+                case Operation.Subtract:
+                    if (currentValue == 0)
+                    {
+                        result = newValue;
+                    }
+                    else
+                    {
+                        result = currentValue - newValue;
+                    }
+                    break;
+                case Operation.Multiply:
+                    if (currentValue == 0)
+                    {
+                        result = newValue;
+                    }
+                    else
+                    {
+                        result = currentValue * newValue;
+                    }
+                    break;
+                case Operation.Divide:
+                    if (newValue == 0)
+                    {
+                        txtResult.Text = currentValue.ToString();
+                        return;
+                    }
+                    else if (currentValue == 0)
+                    {
+                        currentValue = newValue;
+                        txtResult.Text = "0";
+                        return;
+                    }
+                    else
+                    {
+                        result = currentValue / newValue;
+                    }
+                    break;
+                default:
+                    return;
+            }
+
+            currentValue = result;
+            txtResult.Text = result.ToString();
+            isNewEntry = true;
+        }
+
+        // Event handlers for operations.
         //Multiplication button clicked
         private void btnMultiply_Click(object sender, RoutedEventArgs e)
         {
+            Calculate(Operation.Multiply);
         }
-
 
         //Division button clicked
         private void btnDivide_Click(object sender, RoutedEventArgs e)
         {
+            Calculate(Operation.Divide);
         }
-
 
         //Subtraction button clicked
         private void btnSubtract_Click(object sender, RoutedEventArgs e)
         {
+            Calculate(Operation.Subtract);
         }
-
-
+        
         //Addition button clicked
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            Calculate(Operation.Add);
         }
 
-        //Equal to button clicked
+        //Equal to button clicked. Last operation
         private void btnEqual_Click(object sender, RoutedEventArgs e)
         {
-
+            Calculate(Operation.LastOp);
         }
 
         //Clear the current results
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
+            txtResult.Text = "0";
+            currentValue = 0;
+            isNewEntry = true;
         }
 
 

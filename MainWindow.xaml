@@ -39,7 +39,7 @@
             <Button x:Name="btn_dot" Content="." Width="50" Height="50" FontSize="36"  Grid.Row="4" Grid.Column="2"   Click="btnNumber_Click"/>
             <Button x:Name="btn_equal" Content="=" Width="50" Height="50" FontSize="36"  Grid.Row="4" Grid.Column="4"     Click="btnEqual_Click"/>
         </Grid>
-        <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="37" Margin="0,196,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="238" FontSize="14" IsEnabled="False" />
+        <TextBox x:Name="txtResult" HorizontalAlignment="Left" Margin="20,263,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="36" Width="289"/>
     </Grid>
 
 </Window>
