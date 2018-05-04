@@ -5,26 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator_wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-        <Grid Margin="50,30,224.4,49.8" Background="#FFF9F5F5" >
-            <Button x:Name="btn_1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_2" Content="2" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_3" Content="3" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_mul" Content="*" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="btn_C" Content="C" HorizontalAlignment="Left" Margin="200,0,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_4" Content="4" HorizontalAlignment="Left" Margin="0,51,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_5" Content="5" HorizontalAlignment="Left" Margin="50,51,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_6" Content="6" HorizontalAlignment="Left" Margin="100,51,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_div" Content="/" HorizontalAlignment="Left" Margin="150,51,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="btn_7" Content="7" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_8" Content="8" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_9" Content="9" HorizontalAlignment="Left" Margin="100,100,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold"/>
-            <Button x:Name="btn_sub" Content="-" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="btn_0" Content="0" HorizontalAlignment="Left" Margin="0,147,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" />
-            <Button x:Name="btn_sum" Content="+" HorizontalAlignment="Left" Margin="150,147,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="btn_dot" Content="." HorizontalAlignment="Left" Margin="100,147,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="btn_equal" Content="=" HorizontalAlignment="Left" Margin="200,146,0,0" VerticalAlignment="Top" Width="38" Height="33" FontWeight="Bold" FontSize="14" Background="#FFCEA6A6"/>
-            <TextBox x:Name="result" HorizontalAlignment="Left" Height="37" Margin="0,204,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="238" FontSize="14" IsEnabled="False" Background="#FFE5B8B8"/>
-
+        Title="Calculator" Height="350" Width="350">
+    <Grid Margin="0,0,0,0">
+        <Grid Margin="20,20,0,70" HorizontalAlignment="Left" Width="274">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btn_1" Content="1" Width="50" Height="50" FontSize="36"  Grid.Row="0" Grid.Column="0"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_2" Content="2" Width="50" Height="50" FontSize="36" Grid.Row="0" Grid.Column="1"  Click="btnNumber_Click"/>
+            <Button x:Name="btn_3" Content="3" Width="50" Height="50" FontSize="36" Grid.Row="0" Grid.Column="2"  Click="btnNumber_Click"/>
+            <Button x:Name="btn_mul" Content="*" Width="50" Height="50" FontSize="36" Grid.Row="0"  Grid.Column="3" Click="btnMultiply_Click"/>
+            <Button x:Name="btn_C" Content="C" Width="50" Height="50" FontSize="36" Grid.Row="0"  Grid.Column="4" Click="btnClear_Click"/>
+            <Button x:Name="btn_4" Content="4" Width="50" Height="50" FontSize="36"  Grid.Row="1" Grid.Column="0"    Click="btnNumber_Click"/>
+            <Button x:Name="btn_5" Content="5" Width="50" Height="50" FontSize="36"  Grid.Row="1" Grid.Column="1"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_6" Content="6" Width="50" Height="50" FontSize="36"  Grid.Row="1" Grid.Column="2"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_div" Content="/" Width="50" Height="50" FontSize="36"  Grid.Row="1" Grid.Column="3"   Click="btnDivide_Click"/>
+            <Button x:Name="btn_7" Content="7" Width="50" Height="50" FontSize="36"  Grid.Row="2" Grid.Column="0"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_8" Content="8" Width="50" Height="50" FontSize="36"  Grid.Row="2" Grid.Column="1"    Click="btnNumber_Click"/>
+            <Button x:Name="btn_9" Content="9" Width="50" Height="50" FontSize="36"  Grid.Row="2" Grid.Column="2"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_sub" Content="-" Width="50" Height="50" FontSize="36"  Grid.Row="2" Grid.Column="3"    Click="btnSubtract_Click"/>
+            <Button x:Name="btn_0" Content="0" Width="50" Height="50" FontSize="36"  Grid.Row="3" Grid.Column="0"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_add" Content="+" Width="50" Height="50" FontSize="36"  Grid.Row="4" Grid.Column="3"    Click="btnAdd_Click"/>
+            <Button x:Name="btn_dot" Content="." Width="50" Height="50" FontSize="36"  Grid.Row="4" Grid.Column="2"   Click="btnNumber_Click"/>
+            <Button x:Name="btn_equal" Content="=" Width="50" Height="50" FontSize="36"  Grid.Row="4" Grid.Column="4"     Click="btnEqual_Click"/>
         </Grid>
+        <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="37" Margin="0,196,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="238" FontSize="14" IsEnabled="False" />
+    </Grid>
+
 </Window>
